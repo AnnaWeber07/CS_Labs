@@ -1,9 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32126.315
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS_Labs", "CS_Labs\CS_Labs.csproj", "{FB837585-1D8A-427A-AF86-C61B6A2ADBD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CS_Labs", "CS_Labs\CS_Labs.csproj", "{FB837585-1D8A-427A-AF86-C61B6A2ADBD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lab2", "Lab2", "{961A185D-54A4-4FCE-8BC5-B8DA71CCB8B5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twofish", "C:\Users\Анна\source\repos\Twofish-Anna_Chiriciuc\Twofish\Twofish.csproj", "{238D7D90-3072-4B0D-804B-69E6952B2EA8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crypto.Rabbit", "C:\Users\Анна\source\repos\RabbitCipher-master\Crypto.Rabbit\Crypto.Rabbit.csproj", "{368BB8AF-F026-437B-8A86-04854160A7B8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crypto.Rabbit.Test", "C:\Users\Анна\source\repos\RabbitCipher-master\Crypto.Rabbit.Test\Crypto.Rabbit.Test.csproj", "{B52F2DA0-7CD4-4973-AE5D-FFA7A39BD5D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twofish.Tests", "C:\Users\Анна\source\repos\Twofish-Anna_Chiriciuc\Twofish.Tests\Twofish.Tests.csproj", "{65EE6DD0-1D74-46B5-90D0-1C485B00F53A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +25,31 @@ Global
 		{FB837585-1D8A-427A-AF86-C61B6A2ADBD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB837585-1D8A-427A-AF86-C61B6A2ADBD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB837585-1D8A-427A-AF86-C61B6A2ADBD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{238D7D90-3072-4B0D-804B-69E6952B2EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{238D7D90-3072-4B0D-804B-69E6952B2EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{238D7D90-3072-4B0D-804B-69E6952B2EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{238D7D90-3072-4B0D-804B-69E6952B2EA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{368BB8AF-F026-437B-8A86-04854160A7B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{368BB8AF-F026-437B-8A86-04854160A7B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{368BB8AF-F026-437B-8A86-04854160A7B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{368BB8AF-F026-437B-8A86-04854160A7B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B52F2DA0-7CD4-4973-AE5D-FFA7A39BD5D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B52F2DA0-7CD4-4973-AE5D-FFA7A39BD5D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B52F2DA0-7CD4-4973-AE5D-FFA7A39BD5D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B52F2DA0-7CD4-4973-AE5D-FFA7A39BD5D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65EE6DD0-1D74-46B5-90D0-1C485B00F53A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65EE6DD0-1D74-46B5-90D0-1C485B00F53A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65EE6DD0-1D74-46B5-90D0-1C485B00F53A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65EE6DD0-1D74-46B5-90D0-1C485B00F53A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{238D7D90-3072-4B0D-804B-69E6952B2EA8} = {961A185D-54A4-4FCE-8BC5-B8DA71CCB8B5}
+		{368BB8AF-F026-437B-8A86-04854160A7B8} = {961A185D-54A4-4FCE-8BC5-B8DA71CCB8B5}
+		{B52F2DA0-7CD4-4973-AE5D-FFA7A39BD5D2} = {961A185D-54A4-4FCE-8BC5-B8DA71CCB8B5}
+		{65EE6DD0-1D74-46B5-90D0-1C485B00F53A} = {961A185D-54A4-4FCE-8BC5-B8DA71CCB8B5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2B7F80B-A11F-4A3E-B241-8B98F26C31F2}
