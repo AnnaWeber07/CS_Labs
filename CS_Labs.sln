@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CS_Labs", "CS_Labs\CS_Labs.csproj", "{FB837585-1D8A-427A-AF86-C61B6A2ADBD1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RsaAlgorithm", "DH\RsaAlgorithm.csproj", "{495974D7-D47A-48A4-9619-B395F444EDF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FB837585-1D8A-427A-AF86-C61B6A2ADBD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB837585-1D8A-427A-AF86-C61B6A2ADBD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB837585-1D8A-427A-AF86-C61B6A2ADBD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{495974D7-D47A-48A4-9619-B395F444EDF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{495974D7-D47A-48A4-9619-B395F444EDF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{495974D7-D47A-48A4-9619-B395F444EDF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{495974D7-D47A-48A4-9619-B395F444EDF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
