@@ -37,8 +37,10 @@ e. Perform a digital signature check by comparing the hash of the message with t
 
 ## Implementation description
 
-In this lab work I've created a web service with autentication 
-![Oauth](oauth.png)
+In this lab work I've created a web application that has in-built database of users.
+These operations are available: register a user, login, get the message to be encrypted, verify it and create refresh tokens.
+
+In order to omit lots of code, I'll explain the structure. I have implemented necessary controllers for the requests mentioned earlier, DTOs with necessary properties for json object creation/deserialization and specific methods for password and message hashing.
 
 
 JWTs (JSON Web Tokens) are credentials, which can grant access to resources.
@@ -52,34 +54,25 @@ and
 
 ![Jwt2](jwt2.png)
 
-Let's dive into more details.
-
-This is the User Data Transfer Object that contains user's necessary properties. It is also used in an asyncronous Task of Registration and Authorization of User.
-
-![File2](file2.png)
-
-Here I implement an abstract interface to get the user by name.
-![File3](file3.png)
+Let's dive into more details. Code with DTOs and interfaces can be found in the lab folder.
 
 This is the Token DTO with attributed creation/expiration time.
 
 ![File](file.png)
 
 Now I'll explain the controller which holds the most important part. For full code, please see the AuthController.cs file.
-User authorization:
-![File8](file8.png)
-
+User registration, password hash and salt creation using SHA256 + Salt.
 SHA256 is designed by NSA, it's more reliable than SHA1. With the GDPR you have to pseudonymize personally identifiable information (PII), or sensitive personal information (SPI), you are processing. 
-The hash rule is: hash= SHA256(SALT(STRING)+STRING).
+The hash rule is: hash = SHA256(SALT(STRING)+STRING).
 please mind that STRING is case sensitive!
-Here the user's hased password is created using SHA256 + Salt.
-
-![File5](file5.png)
-![File7](file7.png)
 
 Here's the login part that searches for user, verifies whether the password is correct and creates an access token for user authorization.
+Depending on the incoming data, user will be not found or the password will be wrong or successfully logged in.
 
-![File6](file6.png)
+![File111](file111.png)
+
+Here the password hash is verified.
+
 ![File10](file10.png)
 
 This task is used to show whether the tokens match, not expired and fully function.
@@ -90,11 +83,28 @@ Token creation:
 ![File11](file11.png)
 ![File12](file12.png)
 
+This method gets the input and verifies the created token. If it matches, 200 code is returned.
+![File1122](file1122.png)
+
+Here the message is being checked. If message hash/salt isn't matching, then it is not shown.
+![File4444](file4444.png)
+
+Message hash creation and validation methods:
+![File666](file666.png)
+![File777](file777.png)
+
+
+
 ## Conclusions / Screenshots / Results
 
-![File13](file13.png)
-![File14](file14.png)
-![File15](file15.png)
+Here you can see the "workflow" of th application.
+![photo_2022-12-07_12-06-07](photo_2022-12-07_12-06-07.jpg)
+![photo_2022-12-07_12-06-35](photo_2022-12-07_12-06-35.jpg)
+![photo_2022-12-07_12-06-55](photo_2022-12-07_12-06-55.jpg)
+![photo_2022-12-07_12-07-22](photo_2022-12-07_12-07-22.jpg)
+![photo_2022-12-07_12-07-55](photo_2022-12-07_12-07-55.jpg)
+![photo_2022-12-07_12-08-09](photo_2022-12-07_12-08-09.jpg)
+![photo_2022-12-07_12-09-23](photo_2022-12-07_12-09-23.jpg)
 
-As a result we see that generated hash matches and everything works correctly. I used an appropriate hashing algorithms to store passwords in a in-memory DB.
-Also I've used an asymmetric cipher to implement a digital signature process for a user password.
+As a result we see that generated hash matches and everything works correctly. I used an appropriate hashing algorithms to store passwords and messages in a in-memory DB.
+Also I've used an asymmetric cipher to implement a digital signature process for a user password and message.
