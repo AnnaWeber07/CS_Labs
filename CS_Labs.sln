@@ -5,8 +5,6 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CS_Labs", "CS_Labs\CS_Labs.csproj", "{FB837585-1D8A-427A-AF86-C61B6A2ADBD1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SHA256", "C:\Users\Анна\source\repos\SHA256\SHA256\SHA256.csproj", "{0752ACF6-2BE7-4AA6-BA2E-1EF5D58A7D60}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{FB837585-1D8A-427A-AF86-C61B6A2ADBD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB837585-1D8A-427A-AF86-C61B6A2ADBD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB837585-1D8A-427A-AF86-C61B6A2ADBD1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0752ACF6-2BE7-4AA6-BA2E-1EF5D58A7D60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0752ACF6-2BE7-4AA6-BA2E-1EF5D58A7D60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0752ACF6-2BE7-4AA6-BA2E-1EF5D58A7D60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0752ACF6-2BE7-4AA6-BA2E-1EF5D58A7D60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
