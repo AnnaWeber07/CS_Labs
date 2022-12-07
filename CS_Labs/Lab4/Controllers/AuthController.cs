@@ -3,10 +3,10 @@ using AnnaWebweJWTandHashingPassword.Domain.Models;
 using AnnaWebweJWTandHashingPassword.Services.TokenRefreshService;
 using AnnaWebweJWTandHashingPassword.Services.UserService;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 
@@ -17,6 +17,7 @@ namespace AnnaWebweJWTandHashingPassword.Controllers
     public class AuthController : ControllerBase
     {
         public static User user = new User();
+        public static GetMessageDTO message = new GetMessageDTO();
         private readonly IConfiguration _configuration;
         private readonly IUserService _userService;
 
@@ -26,12 +27,7 @@ namespace AnnaWebweJWTandHashingPassword.Controllers
             _userService = userService;
         }
 
-        [HttpGet, Authorize]
-        public ActionResult<string> GetMe()
-        {
-            var userName = _userService.GetMyName();
-            return Ok(userName);
-        }
+
 
         [HttpPost("register")]
         public async Task<ActionResult<User>> Register(UserDto request)
@@ -42,9 +38,8 @@ namespace AnnaWebweJWTandHashingPassword.Controllers
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
-            return Ok(user);
+            return Ok("You are registered");
         }
-
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(UserDto request)
         {
@@ -62,10 +57,48 @@ namespace AnnaWebweJWTandHashingPassword.Controllers
 
             var refreshToken = GenerateRefreshToken();
             CreateUpdateToken(refreshToken);
+            user.RefreshToken = token;
 
             return Ok(token);
         }
 
+        [HttpPost("getinput")]
+        public async Task<ActionResult<User>> Getinput(WriteMessageDTO request)
+        {
+            if (user.RefreshToken != request.token)
+            {
+                return BadRequest("Token not found.");
+            }
+            if (user.Username != request.Username)
+            {
+                return BadRequest("User not found.");
+            }
+            CreateMessageHash(request.Message, out byte[] messageHash, out byte[] messageSalt);
+
+            user.MessageHash = messageHash;
+            user.MessageSalt = messageSalt;
+            user.Message = request.Message;
+
+            return Ok(user);
+        }
+        [HttpPost("checkmessage")]
+        public async Task<ActionResult<User>> CheckMessage(GetMessageDTO request)
+        {
+            if (user.RefreshToken != request.token)
+            {
+                return BadRequest("Token not found.");
+            }
+            if (user.Username != request.Username)
+            {
+                return BadRequest("User not found.");
+            }
+            if (!VerifyMessageHash(request.Message, user.MessageHash, user.MessageSalt))
+            {
+                return BadRequest("Wrong Message");
+            }
+            return Ok(user);
+
+        }
         [HttpPost("refresh-token")]
         public async Task<ActionResult<string>> UpdateToken()
         {
@@ -87,7 +120,7 @@ namespace AnnaWebweJWTandHashingPassword.Controllers
             return Ok(token);
         }
 
-           
+
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
@@ -98,12 +131,29 @@ namespace AnnaWebweJWTandHashingPassword.Controllers
             }
         }
 
+        private void CreateMessageHash(string message, out byte[] messageHash, out byte[] messageSalt)
+        {
+            using (var hmac = new HMACSHA512())
+            {
+                messageSalt = hmac.Key;
+                messageHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(message));
+            }
+        }
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
             using (var hmac = new HMACSHA512(passwordSalt))
             {
                 var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                 return computedHash.SequenceEqual(passwordHash);
+            }
+        }
+        private bool VerifyMessageHash(string message, byte[] messageHash, byte[] messageSalt)
+        {
+
+            using (var hmac = new HMACSHA512(messageSalt))
+            {
+                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(message));
+                return computedHash.SequenceEqual(messageHash);
             }
         }
 
