@@ -36,8 +36,6 @@ Also I've implemented MFA here.
 Some code snippets here:
 
 Registration
-
-
 ``` 
   [HttpPost("register")]
         public async Task<ActionResult<User>> Register(UserDto request)
@@ -112,5 +110,9 @@ Refresh JWT token
 ``` 
 
 In order to omit a lot of code, message hash, salt, etc will be omitted, but can be found in AuthController.cs file. :)
+Link: https://github.com/AnnaWeber07/CS_Labs/blob/master/CS_Labs/Lab5/Controllers/AuthController.cs
 
 
+## Conclusion
+
+As a result we obtain a whole secure web app that is based on MFA, Salt+SHA256, JWT tokens and complete authorization/registration.
