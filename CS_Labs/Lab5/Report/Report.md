@@ -36,6 +36,8 @@ Also I've implemented MFA here.
 Some code snippets here:
 
 Regostration
+
+
 '''
   [HttpPost("register")]
         public async Task<ActionResult<User>> Register(UserDto request)
