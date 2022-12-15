@@ -35,10 +35,10 @@ Also I've implemented MFA here.
 
 Some code snippets here:
 
-Regostration
+Registration
 
 
-'''
+``` 
   [HttpPost("register")]
         public async Task<ActionResult<User>> Register(UserDto request)
         {
@@ -54,4 +54,63 @@ Regostration
 
             return Ok("You are registered");
         }
-  '''
+``` 
+
+Login
+``` 
+ [HttpPost("login")]
+        public async Task<ActionResult<string>> Login(UserDto request)
+        {
+            if (user.Username != request.Username)
+            {
+                return BadRequest("User not found.");
+            }
+
+            if (!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+            {
+                return BadRequest("Wrong password.");
+            }
+            if (!VerifyAnswerHash(request.Answer, user.AnswerHash, user.AnswerSalt))
+            {
+                return BadRequest("Wrong Answer");
+            }
+            
+
+            string token = CreateToken(user);
+
+            var refreshToken = GenerateRefreshToken();
+            CreateUpdateToken(refreshToken);
+            user.RefreshToken = token;
+
+            return Ok(token);
+        }
+``` 
+
+
+Refresh JWT token
+``` 
+ [HttpPost("refresh-token")]
+        public async Task<ActionResult<string>> UpdateToken()
+        {
+            var refreshToken = Request.Cookies["refreshToken"];
+
+            if (!user.RefreshToken.Equals(refreshToken))
+            {
+                return Unauthorized("Invalid Refresh Token.");
+            }
+            else if (user.TokenExpires < DateTime.Now)
+            {
+                return Unauthorized("Token expired.");
+            }
+
+            string token = CreateToken(user);
+            var newRefreshToken = GenerateRefreshToken();
+            CreateUpdateToken(newRefreshToken);
+
+            return Ok(token);
+        }
+``` 
+
+In order to omit a lot of code, message hash, salt, etc will be omitted, but can be found in AuthController.cs file. :)
+
+
